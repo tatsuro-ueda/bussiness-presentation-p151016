@@ -57,7 +57,7 @@ module.exports = function(grunt) {
     },
     shell: {
       compile: {
-        command : 'mdpress readme.md -s mytheme'
+        command : 'mdpress readme.md'
       },
       copy: {
         command : 'cp -r image readme/'

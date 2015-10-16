@@ -1,303 +1,98 @@
-## Raspberry Piで
-## 気温を知らせるTwitter Botをつくる
+## ビジネスプラン発表
+
+- 植田達郎
+- フリーランスプログラマ
+- 四日市
 
 ---
-## 自己紹介
+## ◎こんなグラフ、高校で見ませんでしたか？
 
-![Weed](image/weed.jpg)　植田達郎（@weed_7777）
-
-- 元教員（10年間）
-  - 中学理科、高校物理
-- フリーランス（2年目）
-  - 画像処理（勉強中）
-  - 物理教材ビデオ作成（デモ）
-  - JavaScript, ObjC
-- 趣味
-  - 城巡り
+![](images/funokasokudo3x.gif)
 
 ---
-## 今回作ったもの
+## ◎画像処理でできること
 
-![全体像](image/zentai.jpg)
-
----
-## 実験
-
-以下のようにツイートしてみて下さい：
-
-```
-@weed_hubot 温度は？
-```
+- [画像処理](https://www.youtube.com/embed/WhXlPwN5CkU)
+- 実際にはDEMO
 
 ---
-## 温度センサ
+## ◎物体の速度を可視化する
 
-![LM35](image/LM35.jpg)
+2. [速度ベクトル](https://www.youtube.com/watch?v=a5POcgc4PM4)
 
-- 120円
-
----
-## 温度の測り方
-
-![LM35-pin](image/LM35-pin.png)
-
-- 摂氏（℃）に比例した電圧出力
-    - 例
-        - ０℃→０Ｖ
-        - ２０℃→２００ｍＶ
-- 要は、電圧を測れば、温度がわかる
+3. [速度のグラフ化](https://www.youtube.com/watch?v=HeJrlidMklY)
 
 ---
-## Arduino
+## ◎見覚えのあるグラフが？
 
-![ArduinoUno_R3_Front-resized](image/ArduinoUno_R3_Front-resized.jpg)
-
-- 電圧を測る
-- 3000円
+- [斜面を登る運動](https://www.youtube.com/embed/WhXlPwN5CkU)
 
 ---
-## 電圧を測る
+## ◎解決したい課題
 
-![ArduinoUno_R3_Front-analogpin](image/ArduinoUno_R3_Front-analogpin.jpg)
-
-- Arduinoには電圧を測ることができるピンが6つある
-
----
-## ブレッドボード
-
-![bread-board](image/bread-board.gif) ![bread-board-connect](image/bread-board-connect.gif)
-
-- 温度センサとArduinoをつなぐために使う
-- 内部が右図のように導通している
+- 高校物理の学習者の多くが途中であきらめてしまう
+- 高校物理では**<font color=green>目に見えない</font>**事象（加速度、力など）を理解しなければならない
 
 ---
-## 温度センサを配置する
+## ◎製品内容
 
-![LM35-on-breadboard](image/LM35-on-breadboard.JPG)
+- 物理教育を補助するアプリ
 
-- こんな感じに刺します
+## ◎製品のウリ
 
----
-## 配線する
+- 10年間の物理教員の**<font color=green>経験</font>**
+- 現場の教員の忙しさを踏まえた**<font color=green>現実的な</font>**アプリ
 
-![wiring](image/wiring.JPG)
+## ◎製品のもっとも優れた点
 
-- こんな感じにつないでいきます
-
----
-## 配線図
-
-![LM35-Sketch](image/LM35-Sketch.png)
+- **<font color=green>画像処理</font>**を使って、速度や加速度、力などを**<font color=green>可視化</font>**する
 
 ---
-## プログラム
+## ◎顧客の導線
 
-```
-void setup() {
-}
-
-void loop() {
-  A_val = analogRead( A_inPin );
-  delay(1000);
-}
-```
-
-- `setup()`と`loop()`だけ書く
-- 1秒ごとに電圧を測る（1024段階）
+- **<font color=green>学会</font>**での発表（日本物理学会、日本物理教育学会）
+- 物理教員の**<font color=green>勉強会</font>**に参加して発表（愛知、三重は参加済み）
+- 公立学校からの**<font color=green>口コミ</font>**（後述）
 
 ---
-## 温度に直す
+## ◎収益の仕組み
 
-```
-  tempC = ((5.0 * A_val) / 1024) * 100;
-```
+- アプリを起動すると**<font color=blue>「公立学校用」</font>**と表示される
+- これを解除するには**<font color=red>有償</font>**とする
+- **<font color=blue>公立学校</font>**で評判を広め、**<font color=red>私立学校・塾</font>**から収入を得る
 
-- 電圧を求めるには
-  - 1024段階で 5 V
-  - 入力値を1024で割って、5をかける
-- 温度を求めるには
-  - 1℃で 10 mV = 1/100 V
-  - 電圧に100をかける
+## ◎収益の背景
+
+- 公立学校では教材を**<font color=blue>買えない</font>**（実情はポケットマネー）
+- 私立学校・塾では簡単に予算で**<font color=red>買うことができる</font>**
 
 ---
-## シリアル通信
+## ◎収益の見込み（国内）
 
-![Arduino-RasPi](image/Arduino-RasPi.jpg)
+[^1]: 学校基本統計
+[^2]: 経済産業省、特定サービス産業動態統計調査
+[^3]: 教員勤務実態調査：理科10.2%。以下、物理教員は全体の3%として算出。
+[^4]: 高校教員数は公立：25万人、私立：5万人、塾：8万人
 
-- ArduinoからRaspberry Piにデータを送る
-
----
-## データを送る
-
-```
-void setup() {
-  Serial.begin(9600); // シリアル通信の初期化
-}
-
-void loop() {
-  ...
-
-  Serial.println( tempC ); // シリアル通信に温度を書き込んでいる
-
-  ...
-}
-```
+- 物理教員の数　公立8000人、私立＋塾5000人
+- Windows版（教員用：単価1万円）
+  - 私立・塾の1/20が購入→**<font color=green>250万円</font>**
+- iPad版（生徒用：単価1000円）
+  - 私立・塾の1/40が購入→**<font color=green>500万円</font>**
+- 出張使い方講習の実施（単価5万円）50回→**<font color=green>250万円</font>**
 
 ---
-## データを受け取る：Raspberry Pi 
+## ◎収益の見込み（海外）
 
-![raspi-spec](image/raspi-spec.jpg)
+[^5]: 世界の中学・高校の教員数は1000万人
 
----
-## 価格
+- 物理の教員は10万人
+  - Windows版を教員の1/50が購入→**<font color=green>2000万円</font>**
+  - iPad版を教員の1/100が購入→**<font color=green>4000万円</font>**
 
-![raspi-price](image/raspi-price.jpg)
+## 結論
 
----
-## Raspberry PiはLinux
+- 国内の市場は小さい
+- 国際科学教育学会などで発表することが必要か
 
-- ・・・なので、受け取るプログラムはいろいろな言語で書ける
-  - C
-  - Python
-  - Ruby
-  - Java
-  - Node（今回使用）
-
----
-## ここでボソッと
-
-Node（JavaScript）、やってられん（懇親会で）
-
----
-## Nodeプログラム（1）
-
-```
-serialport = require('serialport')
-
-portName = '/dev/ttyACM0'
-sp = new serialport.SerialPort portName, {
-  baudRate: 9600
-  dataBits: 8
-  parity: 'none'
-  stopBits: 1
-  flowControl: false
-  parser: serialport.parsers.readline("\n")
-}
-
-...
-```
-
-- シリアルポートを初期化する
-
----
-## Nodeプログラム（2）
-
-```
-...
-
-sp.on 'data', (input) ->
-  console.log "部屋の温度は、#{input}℃です"
-```
-
-- シリアルポートからデータが送られてくるたびに、コンソールにメッセージを出す
-- 表示された！（嬉しい）
-
----
-## Hubot
-
-![Hubot](image/hubot.png)
-
-- GitHub社製Bot
-- Slack, IRCなどのチャットサービス用に、それぞれアダプタがある
-- JavaScript / CoffeeScriptでいろいろカスタマイズできる
-- 今回はTwitterアダプタ（後述）を改造して使う
-- Raspberry PiにHubotをインストールする
-
----
-## hubot-twitter-userstream
-
-![hoo89](image/hoo89.jpg) 作者。素性不明。
-
-- HubotのTwitterアダプタの一つ
-- パブリックストリームを監視するように改造する
-- ツイートが来たら温度を返すスクリプトを書く
-
----
-## パブリックストリーム
-
-元のコード
-
-```
-stream = @client.stream('user')
-```
-
-改変したコード
-
-```
-stream = @client.stream('statuses/filter', {
-    track: "@#{user.screen_name}"
-})
-
-```
-
-- 要はメンションを監視するようにした
-- これで、メンションを監視して特定のキーワードが入っていれば温度を返すことができた
-
----
-## 実際の様子
-
-![Tweet](image/tweet.jpg)
-
----
-## まとめ1
-
-- 温度センサの値をTwitterで返すことができるようにした
-  1. 温度センサ
-  2. →Arduino（電圧）
-  3. →Raspberry Pi（シリアル通信）
-  4. →Twitter（Hubot）
-
----
-## まとめ2
-
-- Raspberry Piは使いやすい
-  1. 今回のアプリケーションは2日でできた
-  2. 見えるところ・見えないところで、いろいろケアされている感じ（Wifiの設定など）
-- ほぼUbuntu / Linuxと同じ、つまり・・・
-  1. 膨大なノウハウをそのまま使うことができる
-  1. 膨大なドライバをそのまま使うことができる
-- Python, Ruby, NodeなどのRasPi用ライブラリが充実している
-- micro SDカードを入れ替えれば、別のハードウェア・アプリケーションにできる。新たに買わなくて良い。素晴らしい！
-
-個人的な感触としては、Arduinoよりはるかに使いやすい（ただし、Arduinoはアナログ電圧を読み取ることができる）
-
----
-## 追伸
-
-## Raspberry Pi 2: 2/2より販売開始
-
-![Raspberry Pi 2](image/raspi2.jpeg)
-
-- 処理速度6倍
-- メモリ2倍（1GB）
-- Raspberry Pi 1と完全互換
-- $35
-
----
-## Windows 10
-
-![Windows 10 - Raspberry Pi 2](image/win10-raspi2.jpg)
-
-- **Windows 10 @ Raspberry Pi 2** は、Makerに無料で配布
-- MicrosoftがIoTに攻め込んだ
-- C#, Visual Studio, .Net frameworkの世界
-
----
-## まとめ3
-
-- 何か一つハードウェア作品を作っておくと良い
-- なぜなら、気軽にMake系イベントに申し込める！
-- 本命は開発中でも企画中でも妄想中でも、心配せずに申し込める
-- Make系イベントに「出展側」で参加すると大変やりがいがある
-
-（おわり）
+以上
