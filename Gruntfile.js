@@ -39,7 +39,8 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'shell:compile',
-          'shell:copy'
+          'shell:copy',
+          'shell:copy2'
         ]
       },
       livereload: {
@@ -61,6 +62,9 @@ module.exports = function(grunt) {
       },
       copy: {
         command : 'cp -r image readme/'
+      },
+      copy2: {
+        command : 'cp readme/css/style-origin.css readme/css/style.css'
       }
     }
   });
@@ -72,6 +76,7 @@ module.exports = function(grunt) {
   grunt.registerTask('server', [
     'shell:compile',
     'shell:copy',
+    'shell:copy2',
     'livereload-start',
     'connect:livereload',
     'open',
